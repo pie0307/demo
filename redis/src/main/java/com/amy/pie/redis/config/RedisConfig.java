@@ -50,7 +50,7 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(connectionFactory());
         FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);
         // 建议使用这种方式，小范围指定白名单 (1.2.24以及之前版本存在远程代码执行高危安全漏洞)
-        ParserConfig.getGlobalInstance().addAccept("com.ziroom.");
+        ParserConfig.getGlobalInstance().addAccept("com.amy.");
         // 设置键（key）的序列化采用StringRedisSerializer
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
