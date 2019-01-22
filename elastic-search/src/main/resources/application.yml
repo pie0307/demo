@@ -1,0 +1,6 @@
+server:
+  port: 8082
+
+elasticsearch.ip: 10.16.34.208
+elasticsearch.port: 9300
+elasticsearch.clusterName: backend-es-test

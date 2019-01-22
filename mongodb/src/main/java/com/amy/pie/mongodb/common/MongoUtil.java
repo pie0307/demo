@@ -1,5 +1,6 @@
 package com.amy.pie.mongodb.common;
 
+import com.mongodb.WriteResult;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import lombok.extern.slf4j.Slf4j;
@@ -42,25 +43,25 @@ public class MongoUtil<T extends BaseDocument> {
     }
 
 
-    public UpdateResult updateIgnoreNull(T document) {
+    public WriteResult updateIgnoreNull(T document) {
         return update(document, true);
     }
 
-    public UpdateResult update(T document) {
+    public WriteResult update(T document) {
         return update(document, false);
     }
 
 
-    public UpdateResult update(Query query, Update update, Class<T> clazz) {
+    public WriteResult update(Query query, Update update, Class<T> clazz) {
         return mongoTemplate.updateFirst(query, update, clazz);
     }
 
 
-    public DeleteResult delete(T document) {
+    public WriteResult delete(T document) {
         return mongoTemplate.remove(document);
     }
 
-    public DeleteResult delete(Query query, Class<T> clazz) {
+    public WriteResult delete(Query query, Class<T> clazz) {
         return mongoTemplate.remove(query, clazz);
     }
 
@@ -81,7 +82,7 @@ public class MongoUtil<T extends BaseDocument> {
     }
 
 
-    private UpdateResult update(T document, boolean ignoreNull) {
+    private WriteResult update(T document, boolean ignoreNull) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(document.getId()));
         Update update = new Update();

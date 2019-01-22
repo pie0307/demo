@@ -19,10 +19,11 @@
         <module>dubbo-api</module>
 
         <module>mongodb</module>
-        <module>kafka</module>
+        <module>kafka-produce</module>
         <module>elastic-search</module>
         <module>redis</module>
         <module>spring</module>
+        <module>kafka-consumer</module>
     </modules>
 
     <dependencies>
