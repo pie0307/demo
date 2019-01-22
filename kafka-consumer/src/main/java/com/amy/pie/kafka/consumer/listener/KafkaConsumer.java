@@ -1,4 +1,4 @@
-package com.amy.pie.kafka.consumer;
+package com.amy.pie.kafka.consumer.listener;
 
 /**
  * Author : liuby.

@@ -31,7 +31,7 @@ public class KafkaProducer {
     @Scheduled(cron = "00/1 * * * * ?")
     public void send() {
         String message = UUID.randomUUID().toString();
-        ListenableFuture future = kafkaTemplate.send("test.topic", message);
+        ListenableFuture future = kafkaTemplate.send("test.topic", "生产消息 " + message);
         future.addCallback(new SuccessCallback() {
 
             @Override

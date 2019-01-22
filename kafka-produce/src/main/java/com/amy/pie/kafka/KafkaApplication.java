@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class KafkaProduceApplication {
+public class KafkaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(KafkaProduceApplication.class, args);
+        SpringApplication.run(KafkaApplication.class, args);
     }
 }
