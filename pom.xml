@@ -24,6 +24,7 @@
         <module>redis</module>
         <module>spring</module>
         <module>kafka-consumer</module>
+        <module>hadoop</module>
     </modules>
 
     <dependencies>
