@@ -115,8 +115,8 @@ public class HouseDocument {
     /**
      * 版本号
      */
-    @Field(value = "ziroom_version")
-    private Long ziroomVersionId;
+    @Field(value = "version")
+    private Long versionId;
 
     /**
      * 整分租

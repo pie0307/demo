@@ -113,7 +113,7 @@ public class MongoUtilTest {
         houseBuilder.houseId(652312L).houseCode("110308902382").houseSourceCode("BJHX290787").hireContractCode("BJSF290848");
         houseBuilder.roomId(54678L).roomCode("02").bedroomCount(3).canHasPet(0).face("南北").hasAiLock(1);
         houseBuilder.hasLift(1).pubToiletCount(0).parlorCount(1).heatMode("2030004").ratingAddress("北京市朝阳区酒仙桥将台路1号").size(12.3);
-        houseBuilder.styleCode("3000325").ziroomVersionId(1003L).isWhole(0).evaluation("房评信息");
+        houseBuilder.styleCode("3000325").versionId(1003L).isWhole(0).evaluation("房评信息");
         houseBuilder.hxPic("g2m1/M00/7E/82/ChAFBluOSuOAC_Y6ABy7PhIu2FE155.JPG");
 
         //卧室图片
