@@ -34,5 +34,8 @@ public class ProcuceController {
         List<Order> orders = orderMapper.selectByUserId(50);
         log.info(orders.toString());
 
+        orders = orderMapper.selectByUserId(51);
+        log.info(orders.toString());
+
     }
 }
