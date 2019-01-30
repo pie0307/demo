@@ -10,10 +10,10 @@ import java.util.Collection;
  * Description : 分库算法
  * Date : Created in 2019/1/29 16:23
  */
-public final class DatabaseShardingAlgorithm implements PreciseShardingAlgorithm<Integer> {
+public final class DatabaseShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
 
     @Override
-    public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<Integer> shardingValue) {
+    public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<Long> shardingValue) {
         int size = availableTargetNames.size();
         for (String each : availableTargetNames) {
             if (each.endsWith(shardingValue.getValue() % size + "")) {

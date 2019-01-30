@@ -15,7 +15,7 @@ import lombok.*;
 public class Order {
     private Long orderId;
 
-    private Integer userId;
+    private Long userId;
 
     private String status;
 }

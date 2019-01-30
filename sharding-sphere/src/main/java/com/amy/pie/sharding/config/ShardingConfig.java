@@ -11,7 +11,6 @@ import io.shardingsphere.core.api.config.strategy.StandardShardingStrategyConfig
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -59,6 +58,7 @@ public class ShardingConfig {
     private String ds1Password;
     @Value("${spring.datasource.ds1.driver-class-name}")
     private String ds1Driver;
+
     @Bean(name = "ds_1")
     @Qualifier("ds_1")
     public DataSource dataSource1() {
@@ -73,12 +73,19 @@ public class ShardingConfig {
     @Bean(name = "shardingDataSource")
     @Qualifier("shardingDataSource")
     public DataSource getDataSource(@Qualifier("ds_0") DataSource ds_0, @Qualifier("ds_1") DataSource ds_1) throws SQLException {
+        // 配置分片规则
         ShardingRuleConfiguration shardingRuleConfig = new ShardingRuleConfiguration();
         shardingRuleConfig.getTableRuleConfigs().add(getOrderTableRuleConfiguration());
         shardingRuleConfig.getTableRuleConfigs().add(getOrderItemTableRuleConfiguration());
         shardingRuleConfig.getBindingTableGroups().add("t_order, t_order_item");
+
+        //配置分库策略
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("user_id", new DatabaseShardingAlgorithm()));
+
+        // 配置分表策略
         shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("order_id", new TablePreciseShardingAlgorithm(), new TableRangeShardingAlgorithm()));
+
+        // 获取数据源对象
         Map<String, DataSource> dataSourceMap = new HashMap<>();
         dataSourceMap.put("ds_0", ds_0);
         dataSourceMap.put("ds_1", ds_1);
@@ -87,6 +94,7 @@ public class ShardingConfig {
         return ShardingDataSourceFactory.createDataSource(dataSourceMap, shardingRuleConfig, new HashMap<>(), properties);
     }
 
+    // 配置表规则
     private static TableRuleConfiguration getOrderTableRuleConfiguration() {
         TableRuleConfiguration result = new TableRuleConfiguration();
         result.setLogicTable("t_order");
@@ -95,6 +103,7 @@ public class ShardingConfig {
         return result;
     }
 
+    // 配置表规则
     private static TableRuleConfiguration getOrderItemTableRuleConfiguration() {
         TableRuleConfiguration result = new TableRuleConfiguration();
         result.setLogicTable("t_order_item");

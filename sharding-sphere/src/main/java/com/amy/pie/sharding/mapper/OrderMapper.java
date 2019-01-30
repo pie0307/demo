@@ -18,7 +18,7 @@ public interface OrderMapper {
     int createUser(Order order);
 
     @Select("SELECT * FROM t_order WHERE user_id = #{userId}")
-    List<Order> selectByUserId(Integer userId);
+    List<Order> selectByUserId(Long userId);
 
     @Select("SELECT * FROM t_order WHERE order_id between #{startOrderId} and #{endOrderId}")
     List<Order> selectByOrderIdBetween(@Param("startOrderId") Long startOrderId, @Param("endOrderId") Long endOrderId);

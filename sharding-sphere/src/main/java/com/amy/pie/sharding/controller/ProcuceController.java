@@ -24,18 +24,21 @@ public class ProcuceController {
 
     @PostConstruct
     void init() {
-        for (int i = 0; i < 100; i++) {
-            Order order = new Order();
-            order.setUserId(i);
-            order.setStatus("1");
-            orderMapper.createUser(order);
-        }
+//        for (int i = 0; i < 100; i++) {
+//            Order order = new Order();
+//            order.setUserId(i);
+//            order.setStatus("1");
+//            orderMapper.createUser(order);
+//        }
 
-        List<Order> orders = orderMapper.selectByUserId(50);
-        log.info(orders.toString());
+//        List<Order> orders = orderMapper.selectByUserId(50L);
+//        log.info(orders.toString());
+//
+//        orders = orderMapper.selectByUserId(51L);
+//        log.info(orders.toString());
 
-        orders = orderMapper.selectByUserId(51);
-        log.info(orders.toString());
+        List<Order> orders1 = orderMapper.selectByOrderIdBetween(20L, 50L);
+        log.info(orders1.toString());
 
     }
 }
