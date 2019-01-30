@@ -7,9 +7,7 @@ package com.amy.pie.camel.processor;
  */
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.camel.Exchange;
-import org.apache.camel.Message;
-import org.apache.camel.Processor;
+import org.apache.camel.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

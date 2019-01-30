@@ -1,10 +1,8 @@
 package com.amy.pie.camel.route;
 
 import com.amy.pie.camel.processor.HttpProcessor;
-import com.amy.pie.camel.processor.MqProcessor;
-import com.amy.pie.camel.vo.ParamDto;
 import org.apache.camel.Exchange;
-import org.apache.camel.model.dataformat.JsonLibrary;
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -31,14 +29,19 @@ public class HttpRouteBuilder extends SpringRouteBuilder {
                 "username=phoenix_rabbit_write" +
                 "&password=phoenix_rabbit_write" +
                 "&routingKey=ehrnew.empInfo.psJob" +
-                "&vhost=phoenix&exchangeType=topic&autoDelete=false&durable=true&queue=liuby_camel_test")
+                "&vhost=phoenix" +
+                "&exchangeType=topic" +
+                "&autoDelete=false" +
+                "&durable=true" +
+                "&queue=liuby_camel_test")
                 .convertBodyTo(String.class, "UTF-8")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
+                .setHeader(Exchange.ACCEPT_CONTENT_TYPE, constant("application/json")).setExchangePattern(ExchangePattern.InOut)
                 .multicast()
-                .to("http4://localhost:8082/myapp/myservice").process(new HttpProcessor())
-                .to("http4://localhost:8083/myapp/myservice").process(new HttpProcessor())
-                .to("http4://localhost:8084/myapp/myservice").process(new HttpProcessor());
+                .to("http://localhost:8082/myapp/myservice").process(new HttpProcessor())
+                .to("http://localhost:8083/myapp/myservice").process(new HttpProcessor())
+                .to("http://localhost:8084/myapp/myservice").to("log:inputOrderItem");
 
     }
 }

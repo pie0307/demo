@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring.datasource:
+    ds0:
+      url: jdbc:mysql://localhost:3306/ds_0
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+    ds1:
+      url: jdbc:mysql://localhost:3306/ds_1
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root

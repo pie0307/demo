@@ -26,6 +26,7 @@
         <module>kafka-consumer</module>
         <module>hadoop</module>
         <module>camel</module>
+        <module>sharding-sphere</module>
     </modules>
 
     <dependencies>
