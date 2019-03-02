@@ -27,6 +27,7 @@
         <module>hadoop</module>
         <module>camel</module>
         <module>sharding-sphere</module>
+        <module>zookeeper</module>
     </modules>
 
     <dependencies>
