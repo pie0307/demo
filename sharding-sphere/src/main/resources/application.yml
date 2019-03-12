@@ -12,3 +12,6 @@ spring.datasource:
       driver-class-name: com.mysql.jdbc.Driver
       username: root
       password: root
+
+
+management.security.enabled: false

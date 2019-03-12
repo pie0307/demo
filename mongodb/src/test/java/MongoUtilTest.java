@@ -48,14 +48,16 @@ public class MongoUtilTest {
 
         for (int i = 0; i < 1; i++) {
             //  创建线程
-            Thread th = new Thread(() -> {
-                for (int j = 0; j < 1; j++) {
-                    RentUnitDocument rentUnitDocument = packageDoc();
-                    rentUnitDocument.setInvId(RandomUtils.nextLong());
-                    //System.out.println(Thread.currentThread().getName() + " " + rentUnitDocument.getInvId());
-                    mongoUtil.insert(rentUnitDocument);
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = 0; j < 1; j++) {
+                        RentUnitDocument rentUnitDocument = packageDoc();
+                        rentUnitDocument.setInvId(RandomUtils.nextLong());
+                        //System.out.println(Thread.currentThread().getName() + " " + rentUnitDocument.getInvId());
+                        mongoUtil.insert(rentUnitDocument);
+                    }
                 }
-
             });
             th.start();
             th.join();
@@ -75,14 +77,16 @@ public class MongoUtilTest {
 
         for (int i = 0; i < 10; i++) {
             //  创建线程
-            Thread th = new Thread(() -> {
-                for (int j = 0; j < 100000; j++) {
-                    RentUnitDocument rentUnitDocument = packageDoc();
-                    rentUnitDocument.setInvId(RandomUtils.nextLong());
-                    //System.out.println(Thread.currentThread().getName() + " " + rentUnitDocument.getInvId());
-                    mongoUtil.insert(rentUnitDocument);
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = 0; j < 100000; j++) {
+                        RentUnitDocument rentUnitDocument = packageDoc();
+                        rentUnitDocument.setInvId(RandomUtils.nextLong());
+                        //System.out.println(Thread.currentThread().getName() + " " + rentUnitDocument.getInvId());
+                        mongoUtil.insert(rentUnitDocument);
+                    }
                 }
-
             });
             th.start();
             th.join();
